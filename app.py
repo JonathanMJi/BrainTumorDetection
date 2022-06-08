@@ -1,6 +1,7 @@
 from markdown import markdown
 import streamlit as st
 from streamlit_option_menu import option_menu
+import cv2
 import os
 import numpy as np
 from PIL import Image
@@ -22,10 +23,20 @@ def getResult(image):
     return result
 
 def get_className(classNo):
+    Tumor_html="""
+        <div style="background-color:#F08080;padding:10px">
+        <h2 style="color:white;text-align:center;">Tumor detected</h2>
+        </div>
+        """
+    Normal_html="""
+        <div style="background-color:#5ec391 ;padding:10px">
+        <h3 style="color:white;text-align:center;">Tumor not detected</h3>
+        </div>
+        """
     if classNo == 0:
-        return "Brain tumor not detected"
+        st.markdown(Normal_html, unsafe_allow_html=True)
     elif classNo == 1:
-        return "Brain tumor detected"
+        st.markdown(Tumor_html, unsafe_allow_html=True)
 
 
 
@@ -60,16 +71,7 @@ def main():
         """
         st.markdown(s, unsafe_allow_html=True)
         class_btn = st.button("Predict")
-        Tumor_html="""
-        <div style="background-color:#F08080;padding:10px">
-        <h2 style="color:white;text-align:center;">Tumor detected</h2>
-        </div>
-        """
-        Normal_html="""
-        <div style="background-color:#F4D03F ;padding:10px">
-        <h3 style="color:white;text-align:center;">Tumor not detected</h3>
-        </div>
-        """
+        
         if uploaded_file is not None:
             image= Image.open(uploaded_file)
             st.image(image)
@@ -82,7 +84,7 @@ def main():
                     #plt.imshow(image)
                     #plt.axis("off")
                     predictions = getResult(image)
-                    st.markdown(get_className(predictions), unsafe_allow_html = True)
+                    get_className(predictions)
     if selected == "Contact":
         
         contact_form = """
