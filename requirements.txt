@@ -1,0 +1,11 @@
+streamlit==1.9.2
+numpy==1.22.3
+scikit-learn==1.0.2
+streamlit-option-menu==0.3.2
+tensorflow==2.6.0
+tensorflow-estimator==2.6.0
+opencv-python==4.5.5.64
+opencv-python-headless==4.5.5.64
+matplotlib==3.5.2
+keras==2.6.0
+protobuf~=3.19.0
