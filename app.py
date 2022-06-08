@@ -58,7 +58,7 @@ def main():
         html_temp = """
         <div style="background-color:#025246 ;padding:10px">
         <h2 style="color:white;text-align:center;">Deep Learning Model</h2>
-        <h5 style="color:white;text-align:center;">This model utilizes CNN (Convolutional Neural Networks) for brain cancer detection.</h5>
+        <h5 style="color:white;text-align:center;">This model utilizes CNN (Convolutional Neural Networks) for brain tumor detection.</h5>
         </div>
         """
         st.markdown(html_temp, unsafe_allow_html=True)
