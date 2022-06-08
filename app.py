@@ -1,7 +1,6 @@
 from markdown import markdown
 import streamlit as st
 from streamlit_option_menu import option_menu
-import cv2
 import os
 import numpy as np
 from PIL import Image
