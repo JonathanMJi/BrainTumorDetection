@@ -1,6 +1,7 @@
 from markdown import markdown
 import streamlit as st
 from streamlit_option_menu import option_menu
+import cv2
 import os
 import numpy as np
 from PIL import Image
@@ -58,11 +59,11 @@ def main():
         html_temp = """
         <div style="background-color:#025246 ;padding:10px">
         <h2 style="color:white;text-align:center;">Deep Learning Model</h2>
-        <h5 style="color:white;text-align:center;">This model utilizes CNN (Convolutional Neural Networks) for brain tumor detection.</h5>
+        <h5 style="color:white;text-align:center;">This model utilizes CNN (Convolutional Neural Networks) for brain cancer detection.</h5>
         </div>
         """
         st.markdown(html_temp, unsafe_allow_html=True)
-        uploaded_file = st.file_uploader("Upload Files", type=["png","jpg","jpeg"])
+        uploaded_file = st.file_uploader("", type=["png","jpg","jpeg"])
         s = f"""
         <style>
         div.stButton > button:first-child {{ background-color: #04AA6D;color: white; padding: 12px 20px;border: none;border-radius: 4px;cursor: pointer; }}
@@ -84,6 +85,15 @@ def main():
                     #plt.axis("off")
                     predictions = getResult(image)
                     get_className(predictions)
+
+        help_html = """
+        <div style="background-color:#025246 ;padding:20px">
+        <h5 style="color:white;;text-align:center;">Info</h5>
+        <p style="color:white">This deep learning web application utilizes Convolutional Neural to identify the presence of brain tumors from patient MRIs.</p>
+        <p style="color:white">The dataset used to train this model is Ahmed Hamada's "Br35H :: Brain Tumor Detection 2020" on Kaggle.</p>
+        </div>
+        """
+        st.markdown(help_html, unsafe_allow_html=True)
     if selected == "Contact":
         
         contact_form = """
@@ -99,6 +109,7 @@ def main():
         </form>
         """
         st.markdown(contact_form, unsafe_allow_html=True)
+
     
     if selected == "ROC Curve":
         html_temp = """
